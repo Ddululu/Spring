@@ -23,6 +23,7 @@ public class GB_DAO {
                     rs.getString(3), rs.getDate(4), rs.getString(4));
         }
     }
+
         // 주입 받은 vo 객체를 이용해 sql 구문을 완성하고 JdbcTemplate.update() 메소드 호출
     public void insert(GB_VO vo) {
         String sql = "insert into guestbook(writer,pwd,wdate,content) values(?,?,sysdate(),?)";
