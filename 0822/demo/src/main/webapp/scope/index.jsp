@@ -18,10 +18,10 @@
 </c:if>
 <c:if test="${sessionScope.loginId!=null}">
   ${sessionScope.loginId}님의 타입은 ${sessionScope.type}입니다.<br/>
-    <a href="">내정보 확인</a>
-    <a href="">탈퇴</a>
-    <a href="">게시판</a>
-    <a href="./logout">로그아웃</a>
+    <a href="/scope/info/user">내정보 확인</a>
+    <a href="/scope/info/out">탈퇴</a>
+    <a href="/board/">게시판</a>
+    <a href="/scope/auth/logout">로그아웃</a>
 </c:if>
 <br/>
 

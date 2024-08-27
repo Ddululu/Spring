@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.net.SocketPermission;
+
 @Controller
 @RequestMapping("/scope/")
 public class ScopeController {
@@ -72,7 +74,35 @@ public class ScopeController {
         return "scope/auth/login";
     }
 
+    @GetMapping("info/user")
+    public String userInfo(HttpSession session, Model m) {
+        String loginId = (String) session.getAttribute("loginId");
+        try {
+            m.addAttribute("account", service.getAccount(loginId));
+        } catch (Exception e) {
+            m.addAttribute("id", "등록되지 않은 사용자");
+        }
+        return "scope/info/user";
+    }
+//    @GetMapping("/info/user")
+//    public void userInfo(HttpSession session, Model m) throws Exception {
+//        m.addAttribute("m", service.getAccount((String)session.getAttribute("loginId")));
+//    }
 
+    @PostMapping("info/edit")
+    public String editInfo(Scope account, HttpSession session) throws Exception {
+        service.setAccount(account);
+        Scope m2 = service.getAccount((String)session.getAttribute("loginId"));
+        session.setAttribute("type", m2.getType());
+        return "scope/index";
+    }
+
+    @GetMapping("info/out")
+    public String out(HttpSession session,Scope account) {
+        account.setId ((String)session.getAttribute("loginId")) ;
+        service.deleteAccount(account);
+        return "redirect:/scope/auth/logout";
+    }
 
 
 

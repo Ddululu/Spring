@@ -21,7 +21,7 @@
 <h2>Weekly Coding Challenge #2: Display User info</h2>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form action="./update" method="post" name="f">
+    <form action="./edit" method="post" name="f">
       <h1>User Info</h1>
       <p><input type="text" name="id" value="${account.id}" readonly ></p>
       <p><input type="text" name="name" value="${account.name}"/></p>

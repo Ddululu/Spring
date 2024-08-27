@@ -13,10 +13,8 @@
 <body>
 <h1>Cont TEST 페이지</h1>
 <ul>
-    <li><a href="/param1">param1</a></li>
-    <li><a href="/param2">param2</a></li>
-    <li><a href="/sessionTest">session</a></li>
-    <li><a href="/voidTest">voidTest</a></li>
+    <li><a href="param/">파라미터 테스트</a></li>
+    <li><a href="cookie/">쿠키 테스트</a></li>
 </ul>
 </body>
 </html>

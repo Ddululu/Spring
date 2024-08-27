@@ -13,20 +13,25 @@
         li {
             display: inline-block;
             width: 200px;
-            background-color: darkgray;
+            height: 100px;
+            background-color: cornflowerblue;
             border-width: 1px;
+            text-align:center;
+            color: white;
+            font-family: Arial;
+            font-size: xx-large;
         }
     </style>
 </head>
 <body>
 <h1>페이지 이동</h1>
 <ul>
+    <li><a href="test/">테스트공간</a></li>
     <li><a href="scope/">회원가입</a></li>
     <li><a href="city/">도시찾기</a></li>
     <li><a href="guest/">방명록</a></li>
     <li><a href="scope/">로그인</a></li>
     <li><a href="ajax/">AJAX 연습</a></li>
-
 </ul>
 </body>
 </html>
