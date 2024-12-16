@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaft.org">
+<head>
+    <meta charset="UTF-8">
+    <title>자료실</title>
+</head>
+<body>
+<h3> 글작성 </h3>
+<form action="add" method="post" enctype="multipart/form-data">
+  <table border="1">
+    <tr>
+      <th>writer</th>
+      <td><input type="text" name="writer" th:value="${session.loginid}"></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><input type="text" name="title"></td>
+    </tr>
+    <tr>
+      <th>content</th>
+      <td><input type="text" name="content"></td>
+    </tr>
+    <tr>
+      <th>data</th>
+      <td><input type="file" name="file"></td>
+    </tr>
+    <p><button type="submit" value="제출"></button></p>
+  </table>
+</form>
+</body>
+</html>

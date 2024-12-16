@@ -1,0 +1,15 @@
+### POST Request
+POST http://localhost:8080/api/member/join
+Content-Type: application/json
+Accept: application/json
+
+{
+    "id": "ccc",
+    "pwd": "aaa",
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+}
+
+### GET Request
+GET http://localhost:8080/api/member?id=ccc
+Accept: application/json

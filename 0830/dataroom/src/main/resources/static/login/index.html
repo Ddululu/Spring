@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member API Interface</title>
+    <script>
+        const a = () => {
+            //비동기 요청 객체 생성
+            let req = new XMLHttpRequest();
+
+            //비동기 요청에 대한 응답이 오면 자동 호출될 핸들러 등록
+            //받은 응답은 비동기 객체의 responseText 속성에 저장됨
+            //res: {"flag":true}
+            req.onload = () => {
+                let res = document.getElementById("res");
+                let msg = '중복된 아이디';
+                let obj = JSON.parse(req.responseText);
+                if (obj.flag) {
+                    msg = '사용가능한 아이디';
+                }
+                res.innerHTML = msg;
+            }
+
+            //전송할 파라메터 정의
+            let params = 'id=' + document.getElementById("id").value;
+
+            //open()로 요청 설정
+            req.open('get', '/member/idcheckAjax?' + params);
+
+            //요청 전송
+            req.send();
+        }
+
+        const addMember=()=>{
+            const req = new XMLHttpRequest();
+            req.onload = () => {
+                alert(req.responseText);
+                try{
+                    let response = req.responseText
+                    if(response.ok) {
+                        console.log(`Member added: ${JSON.stringify(response.member)}`);
+                    }
+                }catch (error){
+                    console.error('Error adding member:', error);
+                }
+            };
+            const member = {
+                name: document.getElementById('join_name').value,
+                id: document.getElementById('join_id').value,
+                pwd: document.getElementById('join_pwd').value,
+                email: document.getElementById('join_email').value
+            };
+            const param= JSON.stringify(member);
+            req.open('post','/api/member/join',true);
+
+            req.setRequestHeader('Content-Type', 'application/json')
+            req.send(param);
+
+
+        }
+
+        async function getMember(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('join_id').value;
+
+            try {
+                const response = await fetch(`/api/member/join?id=${id}`);
+                const result = await response.json();
+                document.getElementById('get-result').innerText = `Member details: ${JSON.stringify(result)}`;
+            } catch (error) {
+                console.error('Error fetching member:', error);
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="#">
+            <h1>Create Account</h1>
+            <input type="text" placeholder="ID" name="id" id="join_id" />
+            <input type="text" placeholder="PASSWORD" name="pwd" id="join_pwd"/>
+            <input type="text" placeholder="Name" name="name" id="join_name"/>
+            <input type="email" placeholder="Email" name="email" id="join_email" />
+            <button type="submit" onclick="addMember()">Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="#">
+            <h1>Sign in</h1>
+            <input type="text" placeholder="ID" />
+            <input type="password" placeholder="Pwd" />
+            <a href="#">Forgot your password?</a>
+            <button>Sign In</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../script/javascript.js"></script>
+</body>
+</html>
